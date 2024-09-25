@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-
 import PlaygroundScreen from "./screens/playground/PlaygroundScreen"
 import HomeScreen from "./screens/home/HomeScreen"
 
