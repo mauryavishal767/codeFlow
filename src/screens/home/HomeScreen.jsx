@@ -1,6 +1,7 @@
 import React from 'react'
 import "./index.scss"
 import logo from "../../assets/logo.png"
+import RightComponent from './Right component/RightComponent'
 
 
 function HomeScreen() {
@@ -17,7 +18,7 @@ function HomeScreen() {
           </button>
         </div>
       </div>
-      <div className="right-container"></div>
+      <RightComponent/>
     </div>
   )
 }
