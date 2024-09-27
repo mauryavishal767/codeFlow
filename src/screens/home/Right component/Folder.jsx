@@ -1,12 +1,12 @@
 import File from './File'
 
-function Folder() {
+function Folder({title, files}) {
   return (
     <div className="folder-container">
         <div className="folder-header">
             <div className='folder-header-item'>
                 <span className="material-icons" style={{color: "#FFCA29"}}>folder</span>
-                <span>{"DSA"}</span>
+                <span>{title}</span>
             </div>
             <div className='folder-header-item'>
                 <span className="material-icons">delete</span>
@@ -18,10 +18,14 @@ function Folder() {
             </div>
         </div>
         <div className="cards-container">
-            <File/>
-            <File/>
-            <File/>
-            <File/>
+            {
+                files?.map((file)=>{
+                    return <File
+                    key={file.id}
+                    title={file.title}
+                    language={file.language}/>
+                })
+            }
         </div>
     </div>
   )
