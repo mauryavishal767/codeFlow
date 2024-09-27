@@ -9,7 +9,7 @@ import { ModelContext } from '../../ContexProvider/ModelProvider'
 function HomeScreen() {
   const {openModel, closeModel, activeModel} = useContext(ModelContext)
   const openCreatePlaygroundModel =()=>{
-
+    openModel('CREATE_PLAYGROUND')
   }
   return (
     <div className="home-container">
