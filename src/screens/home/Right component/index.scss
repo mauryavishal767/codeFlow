@@ -59,12 +59,17 @@
                 align-items: center;
                 padding: 12px;
                 transition: .2s ease-in-out;
-                .title-container {
+                .first{
                     display: flex;
-                    flex-direction: column;
-                }
-                img {
-                    width: 50px;
+                    align-items: center;
+                    gap: 15px;
+                    .title-container {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    img {
+                        width: 60px;
+                    }
                 }
 
             }
