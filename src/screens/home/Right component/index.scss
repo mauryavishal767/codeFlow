@@ -4,6 +4,9 @@
     padding: 20px;
     overflow-y: scroll;
     margin: 1px;
+    .material-icons{
+        cursor: pointer;
+    }
     .Header {
         display: flex;
         justify-content: space-between;
@@ -40,6 +43,7 @@
                     border: none;
                     display: flex;
                     align-items: center;
+                    cursor: pointer;
                 }
             }
         }

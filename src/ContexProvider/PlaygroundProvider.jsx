@@ -111,6 +111,67 @@ function PlaygroundProvider({children}) {
         setfolders(newFolders);
     }
 
+    const deleteFolder = (id)=>{
+        const newFolders = folders.filter((folder)=> folder.id !== id)
+        localStorage.setItem('codeflow-data', JSON.stringify(newFolders))
+        setfolders(newFolders);
+    }
+
+    const editFolder = (id, title)=>{
+        const newFolders = folders.map((folder)=>{
+            if(folder.id !== id) return folder
+            folder.title = title
+            return folder
+        })
+        localStorage.setItem('codeflow-data', JSON.stringify(newFolders))
+        setfolders(newFolders);
+    }
+
+    const createNewFile = (id, title, language)=>{
+        const newFolders = folders.map((folder)=>{
+            if(folder.id === id){
+                folder.files.push({
+                    id: uuid(),
+                    title: title,
+                    language: language,
+                    code: defaultCode[language]
+                })
+            }
+            return folder
+        })
+        localStorage.setItem('codeflow-data', JSON.stringify(newFolders))
+        setfolders(newFolders);
+    }
+
+    const deleteFile = (id, parentId)=>{
+        const newFolders = [...folders]
+        for(let i = 0; i< newFolders.length; i++){
+            if(newFolders[i].id === parentId){
+                const newFiles = newFolders[i].files.filter((file)=> file.id !== id)
+                newFolders[i].files = newFiles
+                break
+            }
+        }
+        setfolders(newFolders);
+        localStorage.setItem('codeflow-data', JSON.stringify(newFolders))
+    }
+
+    const editFile = (id, parentId, title)=>{
+        const newFolders = [...folders]
+        for(let i = 0; i< newFolders.length; i++){
+            if(newFolders[i].id === parentId)
+            for(let j = 0; j<folders[i].files.length; j++){
+                if(folders[i].files[j].id === id){
+                    folders[i].files[j].title = title
+                    break
+                }
+
+            }
+        }
+        setfolders(newFolders);
+        localStorage.setItem('codeflow-data', JSON.stringify(newFolders))
+    }
+
     useEffect(()=>{
         const data = JSON.parse(localStorage.getItem('codeflow-data'));
         if(data){
@@ -121,7 +182,12 @@ function PlaygroundProvider({children}) {
     const PlaygroundFeatures = {
         folders,
         createNewPlayground,
-        createNewFolder
+        createNewFolder,
+        deleteFolder,
+        editFolder,
+        createNewFile,
+        deleteFile,
+        editFile,
     }
   return (
     <PlaygroundContext.Provider value = {PlaygroundFeatures}>

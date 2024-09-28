@@ -25,6 +25,7 @@ function RightComponent() {
             folders?.map((folder)=>{
                 return <Folder 
                 key={folder.id} 
+                id={folder.id}
                 title={folder.title} 
                 files={folder.files}/>
             })
