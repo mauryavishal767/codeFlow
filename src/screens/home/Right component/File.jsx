@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import logo from '../../../assets/logo.png'
 import { PlaygroundContext } from '../../../ContexProvider/PlaygroundProvider'
 import { ModelContext, ModelConstant } from '../../../ContexProvider/ModelProvider'
+import { useNavigate } from 'react-router-dom'
 
 function File({title, language, id, parentId}) {
   const {deleteFile} = useContext(PlaygroundContext)
@@ -15,9 +16,14 @@ function File({title, language, id, parentId}) {
     openModel(ModelConstant.EDIT_FILE)
   }
 
+  const navigate = useNavigate()
+  const navigatePlayground = ()=>{
+    navigate(`/playground/${id}/${parentId}`)
+  }
+
   return (
     <div className="card">
-      <div className='first'>
+      <div className='first' onClick={navigatePlayground}>
       <img src={logo}/>
       <div className='title-container'>
         <span>{title}</span>

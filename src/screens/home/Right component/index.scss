@@ -67,7 +67,8 @@
                 .first{
                     display: flex;
                     align-items: center;
-                    gap: 15px;
+                    gap: 5px;
+                    flex-grow: 1;
                     .title-container {
                         display: flex;
                         flex-direction: column;
