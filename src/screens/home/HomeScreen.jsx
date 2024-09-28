@@ -3,13 +3,12 @@ import "./index.scss"
 import logo from "../../assets/logo.png"
 import RightComponent from './Right component/RightComponent'
 import Model from '../models/Model'
-import { ModelContext } from '../../ContexProvider/ModelProvider'
-
+import { ModelConstant, ModelContext } from '../../ContexProvider/ModelProvider'
 
 function HomeScreen() {
-  const {openModel, closeModel, activeModel} = useContext(ModelContext)
+  const {openModel} = useContext(ModelContext)
   const openCreatePlaygroundModel =()=>{
-    openModel('CREATE_PLAYGROUND')
+    openModel(ModelConstant.CREATE_PLAYGROUND)
   }
   return (
     <div className="home-container">

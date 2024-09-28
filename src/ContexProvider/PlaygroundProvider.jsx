@@ -99,6 +99,18 @@ function PlaygroundProvider({children}) {
         
     }
 
+    const createNewFolder = (newFolder)=>{
+        const {folderName} = newFolder
+        const newFolders = [...folders]
+        newFolders.push({
+            id: uuid(),
+            title: folderName,
+            files: []
+        })
+        localStorage.setItem('codeflow-data', JSON.stringify(newFolders))
+        setfolders(newFolders);
+    }
+
     useEffect(()=>{
         const data = JSON.parse(localStorage.getItem('codeflow-data'));
         if(data){
@@ -108,7 +120,8 @@ function PlaygroundProvider({children}) {
 
     const PlaygroundFeatures = {
         folders,
-        createNewPlayground
+        createNewPlayground,
+        createNewFolder
     }
   return (
     <PlaygroundContext.Provider value = {PlaygroundFeatures}>

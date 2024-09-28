@@ -1,6 +1,8 @@
 import { useContext } from "react"
 import { ModelContext } from "../../ContexProvider/ModelProvider"
 import CreatePlaygroundModel from "./CreatePlaygroundModel"
+import CreateFolderModel from './CreateFolderModel'
+import { ModelConstant } from "../../ContexProvider/ModelProvider"
 
 
 function Model() {
@@ -9,7 +11,8 @@ function Model() {
 
   return (
     <>
-    {activeModel === 'CREATE_PLAYGROUND' && <CreatePlaygroundModel/>}
+    {activeModel === ModelConstant.CREATE_PLAYGROUND && <CreatePlaygroundModel/>}
+    {activeModel === ModelConstant.CREATE_FOLDER && <CreateFolderModel/>}
     </>
   )
 }

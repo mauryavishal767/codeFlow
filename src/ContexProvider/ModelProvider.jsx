@@ -2,6 +2,11 @@ import { createContext, useState } from "react"
 
 export const ModelContext = createContext()
 
+export const ModelConstant = {
+  CREATE_PLAYGROUND : 'CREATE_PLAYGROUND',
+  CREATE_FOLDER : 'CREATE_FOLDER'
+}
+
 
 function ModelProvider({children}) {
      const [modelType, setmodelType] = useState(null)
