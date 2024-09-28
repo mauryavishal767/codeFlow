@@ -1,10 +1,10 @@
 import './index.scss'
 import Folder from './Folder'
 import { useContext } from 'react'
-import { PlayroundContext } from '../../../ContexProvider/PlaygroundProvider'
+import { PlaygroundContext } from '../../../ContexProvider/PlaygroundProvider'
 
 function RightComponent() {
-    const folders = useContext(PlayroundContext)
+    const folders = useContext(PlaygroundContext).folders
     
   return (
     <div className='right-container'>
