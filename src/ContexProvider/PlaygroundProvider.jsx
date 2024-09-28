@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react"
+import { json } from "react-router-dom"
 import { v4 as uuid } from "uuid"
 
 export const PlaygroundContext = createContext()
@@ -99,7 +100,10 @@ function PlaygroundProvider({children}) {
     }
 
     useEffect(()=>{
-        localStorage.setItem('codeflow-data', JSON.stringify(folders))
+        const data = JSON.parse(localStorage.getItem('codeflow-data'));
+        if(data){
+            setfolders(data)
+        } else localStorage.setItem('codeflow-data', JSON.stringify(initialData))
     },[])
 
     const PlaygroundFeatures = {

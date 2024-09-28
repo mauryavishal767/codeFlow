@@ -31,14 +31,14 @@ function CreatePlaygroundModel() {
         </h2>
         <div className='item'>
           <p>Enter folder Name</p>
-          <input name='folderName'/>
+          <input name='folderName' required/>
         </div>
         <div className='item'>
           <p>Enter card name</p>
-          <input name='fileName'/>
+          <input name='fileName' required/>
         </div>
         <div className='item'>
-          <select name='language'>
+          <select name='language' required>
             <option value="cpp">CPP</option>
             <option value="java">Java</option>
             <option value="javascript">JavaScript</option>
