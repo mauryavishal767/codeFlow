@@ -1,7 +1,17 @@
 import './codeEditorContainer.scss'
 import "./index.scss"
+import { Editor } from '@monaco-editor/react'
+
+const editorOptions = {
+    fontSize: 18,
+    wordWrap: 'on'
+}
 
 function CodeEditorContainer() {
+    const onChnageCode = (newCode)=>{
+        //TODO: do somthing
+        // console.log({newCode});
+    }
   return (
     <div className='editor-container'>
         <div className="editor-header">
@@ -28,7 +38,13 @@ function CodeEditorContainer() {
             </div>
         </div>
         <div className="editor-body">
-            body
+            <Editor 
+                height={'100%'}
+                language={'javascript'}
+                options={editorOptions}
+                theme='vs-dark'
+                onChange={onChnageCode}
+            />
         </div>
         <div className="editor-footer">
             <button className="fullscreen">
@@ -39,7 +55,7 @@ function CodeEditorContainer() {
                 <span className="material-icons">download</span>
                 <span>Import Code</span>
             </label>
-            <input type="file" id="import-code" style={{display:'none'}}/>
+            <input type="file" id="import-code" style={{display:'none'}} />
             <button>
                 <span className="material-icons">upload</span>
                 <span>Export Code</span>
