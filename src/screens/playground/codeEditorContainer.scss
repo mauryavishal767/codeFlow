@@ -1,0 +1,90 @@
+.editor-container{
+    background: red;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .editor-header, .editor-footer{
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-height: 4rem;
+    }
+    .editor-body{
+        background: black;
+        flex-grow: 1;
+    }
+    .editor-left-container, .editor-right-container{
+        display: flex;
+        gap: 1rem;
+        padding: 10px;
+        align-items: center;
+    }
+    .editor-left-container{
+        .editor-title{
+            font-size: 1.75em;
+            font-weight: bold;
+        }
+        .material-icons{
+            cursor: pointer;
+        }
+        button{
+            padding: 0.7rem 0.4rem;
+            width: 6.2rem;
+            background: rgb(0, 151, 215);
+            border: none;
+            border-radius: 32px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    }
+    .editor-right-container{
+        .select-container{
+            padding-right: 5px;
+            width: 6rem;
+            border: 2px solid rgb(204, 204, 204);
+            border-radius: 4px;
+            select{
+                width: 100%;
+                align-items: center;
+                background-color: rgb(255, 255, 255);
+                display: flex;
+                flex-wrap: wrap;
+                align-items: justify;
+                justify-content: space-between;
+                min-height: 38px;
+                position: relative;
+                transition: 100ms;
+                box-sizing: border-box;
+                outline: 0px !important;
+                border: none;
+                padding: 5px 0 5px 5px;
+                color: rgb(51, 51, 51);
+                font-size: 14px;
+            }
+        }
+    }
+
+    .editor-footer{
+        padding: 0.8rem 1rem;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        > *{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.7rem;
+            cursor: pointer;
+            background-color: white;
+            font-size: 1.2rem;
+            border: none;
+        }
+        .run{
+            font-weight: 400;
+            font-size: 1.1rem;
+            padding: 0.6rem 1rem;
+            background: rgb(0, 151, 215);
+            border-radius: 32px;
+        }
+    }
+}
