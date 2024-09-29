@@ -19,6 +19,7 @@ function Model() {
     {activeModel === ModelConstant.EDIT_FOLDER && <EditFolderModel/>}
     {activeModel === ModelConstant.CREATE_FILE && <CreateFileModel/>}
     {activeModel === ModelConstant.EDIT_FILE && <EditFileModel/>}
+    {activeModel === ModelConstant.EDIT_PLAYGROUND_FILE && <EditFileModel/>}
     </>
   )
 }

@@ -43,7 +43,7 @@ const initialData = [
                 id: uuid(),
                 title: 'javascript',
                 code: `console.log('hello world');`,
-                language: 'js'
+                language: 'javascript'
             },
         ]
     },
@@ -172,6 +172,63 @@ function PlaygroundProvider({children}) {
         localStorage.setItem('codeflow-data', JSON.stringify(newFolders))
     }
 
+    const getDefaultCode = (folderId, fileId)=>{
+        for(let i = 0; i< folders.length; i++){
+            if(folders[i].id === folderId){
+                const currFiles = folders[i].files
+                for(let j = 0; j<currFiles.length; j++){
+                    if(currFiles[j].id === fileId){
+                        return currFiles[j].code
+                    }
+                }
+            }
+        }
+    }
+
+    const getDefaultLanguage = (folderId, fileId)=>{
+        for(let i = 0; i< folders.length; i++){
+            if(folders[i].id === folderId){
+                const currFiles = folders[i].files
+                for(let j = 0; j<currFiles.length; j++){
+                    if(currFiles[j].id === fileId){
+                        return currFiles[j].language
+                    }
+                }
+            }
+        }
+    }
+
+    const getFileName = (folderId, fileId)=>{
+        for(let i = 0; i< folders.length; i++){
+            if(folders[i].id === folderId){
+                const currFiles = folders[i].files
+                for(let j = 0; j<currFiles.length; j++){
+                    if(currFiles[j].id === fileId){
+                        return currFiles[j].title
+                    }
+                }
+            }
+        }
+    }
+
+    const saveCodeNLanguage = (folderId, fileId, code, language)=>{
+        const newFolders = [...folders]
+        for(let i = 0; i< newFolders.length; i++){
+            if(newFolders[i].id === folderId){
+                const currFiles = newFolders[i].files
+                for(let j = 0; j<currFiles.length; j++){
+                    if(currFiles[j].id === fileId){
+                        currFiles[j].code = code
+                        currFiles[j].language = language
+                        return true
+                    }
+                }
+            }
+        }
+        localStorage.setItem('codeflow-data', JSON.stringify(newFolders))
+        setfolders(newFolders);
+    }
+
     useEffect(()=>{
         const data = JSON.parse(localStorage.getItem('codeflow-data'));
         if(data){
@@ -188,6 +245,10 @@ function PlaygroundProvider({children}) {
         createNewFile,
         deleteFile,
         editFile,
+        getDefaultCode,
+        getDefaultLanguage,
+        saveCodeNLanguage,
+        getFileName,
     }
   return (
     <PlaygroundContext.Provider value = {PlaygroundFeatures}>
