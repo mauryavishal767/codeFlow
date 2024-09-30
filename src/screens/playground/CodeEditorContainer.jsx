@@ -5,10 +5,12 @@ import { Editor } from '@monaco-editor/react'
 import { PlaygroundContext } from '../../ContexProvider/PlaygroundProvider'
 import { ModelContext, ModelConstant } from '../../ContexProvider/ModelProvider'
 import Model from '../models/Model'
+import { GET, POST } from '../../APIcalls/judge0'
 
 const editorOptions = {
     fontSize: 18,
-    wordWrap: 'on'
+    wordWrap: 'on',
+
 }
 
 const fileExtention = {
@@ -26,11 +28,13 @@ const styles = {
         left: 0,
         right: 0,
         zIndex: 3,
-        // TODO: minimize screen bug
+    },
+    miniscreen: {
+        maxWidth: '66vw',
     }
 }
 
-function CodeEditorContainer({fileId, folderId, style}) {
+function CodeEditorContainer({fileId, folderId, input}) {
     const {getDefaultCode, getDefaultLanguage, saveCodeNLanguage, getFileName} = useContext(PlaygroundContext)
     const {openModel, setModelPayload,} = useContext(ModelContext)
     
@@ -38,7 +42,7 @@ function CodeEditorContainer({fileId, folderId, style}) {
     const [language, setLanguage] = useState(()=>{return getDefaultLanguage(folderId, fileId)})
     const [fileName, setFileName] = useState(()=>{return getFileName(folderId, fileId)})
     const [theme, setTheme] = useState('vs-dark')
-    const [fullscreen, setFullscreen] = useState(false)
+    const [isFullscreen, setIsFullscreen] = useState(false)
 
     const onChangeCode = (newCode)=>{
         setCode(newCode)
@@ -77,7 +81,7 @@ function CodeEditorContainer({fileId, folderId, style}) {
     }
 
     const screenWidthHandler = ()=>{
-        setFullscreen((prev)=> !prev)
+        setIsFullscreen((prev)=> !prev)
     }
 
     const onSave = (e)=>{
@@ -95,13 +99,19 @@ function CodeEditorContainer({fileId, folderId, style}) {
         openModel(ModelConstant.EDIT_PLAYGROUND_FILE)
     }
 
+    const onRunCode = async ()=>{
+        const response = POST(code,input,language);
+        const token = response.token
+        GET(token)
+    }
+
     useEffect(() => {
         setFileName(()=>{return getFileName(folderId, fileId)})
     }, [editFileName])
     
 
   return (
-    <div className='editor-container' style={fullscreen? styles.fullscreen : {}}>
+    <div className='editor-container' style={isFullscreen? styles.fullscreen : styles.miniscreen}>
         <div className="editor-header">
             <div className="editor-left-container">
                 <h3 className='editor-title' id='title'>{fileName}</h3>
@@ -127,7 +137,7 @@ function CodeEditorContainer({fileId, folderId, style}) {
         </div>
         <div className="editor-body">
             <Editor 
-                height={'100%'}
+                height={isFullscreen? '100%' : '80vh'}
                 language={language}
                 options={editorOptions}
                 theme={theme}
@@ -137,10 +147,10 @@ function CodeEditorContainer({fileId, folderId, style}) {
         </div>
         <div className="editor-footer">
             <button className="fullscreen" onClick={screenWidthHandler}>
-                { fullscreen && <span className="material-icons">fullscreen</span> }
-                { fullscreen && <span>Full Screen</span> }
-                { !fullscreen && <span className="material-icons">fullscreen_exit</span>}
-                { !fullscreen && <span>Minimize Screen</span>}
+                { !isFullscreen && <span className="material-icons">fullscreen</span> }
+                { !isFullscreen && <span>Full Screen</span> }
+                { isFullscreen && <span className="material-icons">fullscreen_exit</span>}
+                { isFullscreen && <span>Minimize Screen</span>}
             </button>
             <label htmlFor="import-code">
                 <span className="material-icons">download</span>
@@ -151,7 +161,7 @@ function CodeEditorContainer({fileId, folderId, style}) {
                 <span className="material-icons">upload</span>
                 <span>Export Code</span>
             </button>
-            <button className="run">Run Code</button>
+            <button className="run" onClick={onRunCode}>Run Code</button>
         </div>
         <Model/>
     </div>

@@ -45,7 +45,7 @@ const PlaygroundScreen = () => {
         <h1>Code Flow</h1>
       </div>
       <div className="content-container">
-        <CodeEditorContainer fileId={fileId} folderId={folderId}/>
+        <CodeEditorContainer fileId={fileId} folderId={folderId} input={input}/>
         <div className="input-container">
           <div className="input-header">
             <b>Input:</b>
