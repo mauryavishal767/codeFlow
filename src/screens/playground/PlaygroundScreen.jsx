@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { useRef, useState } from "react";
+import { useState } from "react";
 import logo from '../../assets/logo.png'
 import "./index.scss"
 import CodeEditorContainer from "./CodeEditorContainer";
@@ -45,7 +45,7 @@ const PlaygroundScreen = () => {
         <h1>Code Flow</h1>
       </div>
       <div className="content-container">
-        <CodeEditorContainer fileId={fileId} folderId={folderId} input={input}/>
+        <CodeEditorContainer fileId={fileId} folderId={folderId} input={input} setOutput={setOutput}/>
         <div className="input-container">
           <div className="input-header">
             <b>Input:</b>

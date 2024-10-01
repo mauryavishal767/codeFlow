@@ -5,12 +5,11 @@ import { Editor } from '@monaco-editor/react'
 import { PlaygroundContext } from '../../ContexProvider/PlaygroundProvider'
 import { ModelContext, ModelConstant } from '../../ContexProvider/ModelProvider'
 import Model from '../models/Model'
-import { GET, POST } from '../../APIcalls/judge0'
+import { fetchAPI } from '../../APIcalls/judge0'
 
 const editorOptions = {
     fontSize: 18,
     wordWrap: 'on',
-
 }
 
 const fileExtention = {
@@ -34,7 +33,7 @@ const styles = {
     }
 }
 
-function CodeEditorContainer({fileId, folderId, input}) {
+function CodeEditorContainer({fileId, folderId, input, setOutput}) {
     const {getDefaultCode, getDefaultLanguage, saveCodeNLanguage, getFileName} = useContext(PlaygroundContext)
     const {openModel, setModelPayload,} = useContext(ModelContext)
     
@@ -100,9 +99,9 @@ function CodeEditorContainer({fileId, folderId, input}) {
     }
 
     const onRunCode = async ()=>{
-        const response = POST(code,input,language);
-        const token = response.token
-        GET(token)
+        const {type, data} = await fetchAPI(code,input,language);
+        if(type === 'error') setOutput(data)
+        else setOutput(atob(data))
     }
 
     useEffect(() => {
