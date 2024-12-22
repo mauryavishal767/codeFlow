@@ -7,43 +7,22 @@ export const PlaygroundContext = createContext()
 const initialData = [
     {
         id: uuid(),
-        title: 'DSA',
+        title: 'Coding Folder',
         files: [
             {
                 id: uuid(),
-                title: 'greedy',
-                code: `cout<<"hello world";`,
+                title: 'Hello world',
+                code: `// Online C++ compiler to run C++ program online
+#include <iostream>
+
+int main() {
+    // Write C++ code here
+    std::cout << "Hello User! \\n";
+    std::cout << "Welcome to CodeFlow";
+
+    return 0;
+}`,
                 language: 'cpp'
-            },
-            {
-                id: uuid(),
-                title: 'DP',
-                code: `cout<<"hello world";`,
-                language: 'cpp'
-            },
-            {
-                id: uuid(),
-                title: 'hashing',
-                code: `cout<<"hello world";`,
-                language: 'cpp'
-            },
-            {
-                id: uuid(),
-                title: 'two pointer',
-                code: `cout<<"hello world";`,
-                language: 'cpp'
-            },
-        ]
-    },
-    {
-        id: uuid(),
-        title: 'WebDev',
-        files: [
-            {
-                id: uuid(),
-                title: 'javascript',
-                code: `console.log('hello world');`,
-                language: 'javascript'
             },
         ]
     },
